@@ -2,6 +2,20 @@
 
 无需登录的双人在线五子棋游戏，支持创建 / 加入房间，30秒限时落子。
 
+## 项目目录
+
+```
+my_gomoku/
+├── package.json          # 项目依赖与启动脚本
+├── server.js             # Node.js 服务端：WebSocket 通信、房间管理、对局逻辑、计时器
+├── .gitignore            # Git 忽略配置（排除 node_modules）
+├── README.md             # 项目说明文档
+└── public/               # 前端静态资源目录（Express 自动托管）
+    ├── index.html        # 游戏页面结构：首页、等待页、对战页
+    ├── style.css         # 响应式样式：棋盘、棋子、计时器、自适应布局
+    └── game.js           # 前端交互逻辑：Socket.io 通信、棋盘渲染、落子与计时同步
+```
+
 ## 本地运行
 
 ```bash
