@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>在线双人五子棋</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="app">
+    <!-- 首页 -->
+    <div id="home-screen" class="screen active">
+      <div class="card">
+        <h1>在线双人五子棋</h1>
+        <p class="subtitle">无需登录，输入4位房间号即可对战</p>
+        <div class="actions">
+          <button id="btn-create" class="btn btn-primary">创建房间</button>
+          <div class="divider">或</div>
+          <div class="join-box">
+            <input id="input-room" type="text" maxlength="4" placeholder="输入房间号 (如 1234)">
+            <button id="btn-join" class="btn btn-secondary">加入房间</button>
+          </div>
+        </div>
+        <p id="home-error" class="error-text"></p>
+      </div>
+    </div>
+
+    <!-- 等待页 -->
+    <div id="waiting-screen" class="screen">
+      <div class="card">
+        <h2>等待对手加入</h2>
+        <div class="room-display">
+          <span class="label">房间号</span>
+          <span id="waiting-room-id" class="room-id"></span>
+        </div>
+        <div class="loader"></div>
+        <p class="hint">分享房间号给朋友，即可开始对战</p>
+        <button id="btn-cancel-wait" class="btn btn-text">取消</button>
+      </div>
+    </div>
+
+    <!-- 游戏页 -->
+    <div id="game-screen" class="screen">
+      <div class="game-header">
+        <div class="room-tag">房间: <span id="game-room-id"></span></div>
+        <button id="btn-leave" class="btn btn-ghost">离开</button>
+      </div>
+      <div class="game-main">
+        <div class="side-panel left">
+          <div id="player1-card" class="player-card active">
+            <div class="piece-icon black"></div>
+            <div class="player-name">玩家 1</div>
+            <div class="timer" id="timer1">30</div>
+          </div>
+        </div>
+        <div class="board-wrap">
+          <div id="board" class="board"></div>
+          <div id="game-overlay" class="overlay hidden">
+            <div class="overlay-content">
+              <h2 id="overlay-title"></h2>
+              <p id="overlay-desc"></p>
+              <button id="btn-restart" class="btn btn-primary">再来一局</button>
+              <button id="btn-back" class="btn btn-ghost">返回首页</button>
+            </div>
+          </div>
+        </div>
+        <div class="side-panel right">
+          <div id="player2-card" class="player-card">
+            <div class="piece-icon white"></div>
+            <div class="player-name">玩家 2</div>
+            <div class="timer" id="timer2">30</div>
+          </div>
+        </div>
+      </div>
+      <div class="game-footer">
+        <div class="status-bar">
+          <span id="status-text">等待开始...</span>
+          <button id="btn-surrender" class="btn btn-danger">认输</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>
